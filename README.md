@@ -2,6 +2,9 @@
 
 Современный, адаптивный сайт-визитка для фрилансера, предлагающего услуги по созданию сайтов, рекламных роликов, анимации и карточек товаров.
 
+![](https://img.shields.io/badge/Django-3.2.19-green.svg) ![](https://img.shields.io/badge/DRF-3.13.1-blue.svg)
+![](https://img.shields.io/badge/PostgreSQL-10+-blue.svg) ![](https://img.shields.io/badge/Python-3.8+-yellow.svg)
+
 ## 📸 Скриншоты
 
 <!-- Добавьте позже реальные скриншоты -->
