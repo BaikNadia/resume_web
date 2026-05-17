@@ -1,0 +1,290 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Главная{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Герой-секция с красивой картинкой */
+    .hero {
+        height: 90vh;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        overflow: hidden;
+    }
+
+    /* Фоновое изображение с наложением */
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3') center/cover;
+        opacity: 0.3;
+        z-index: 0;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
+        padding: 2rem;
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        animation: fadeInUp 0.8s ease;
+    }
+
+    .hero p {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        animation: fadeInUp 1s ease;
+    }
+
+    .btn-primary-custom {
+        background: white;
+        color: #667eea;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-block;
+        animation: fadeInUp 1.2s ease;
+    }
+
+    .btn-primary-custom:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        color: #764ba2;
+    }
+
+    /* Секция услуг */
+    .services-section {
+        padding: 5rem 0;
+        background: #f8f9fa;
+    }
+
+    .service-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        text-align: center;
+        transition: transform 0.3s ease;
+        height: 100%;
+    }
+
+    .service-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .service-icon {
+        font-size: 3rem;
+        color: #667eea;
+        margin-bottom: 1rem;
+    }
+
+    /* Портфолио */
+    .portfolio-section {
+        padding: 5rem 0;
+    }
+
+    .portfolio-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        margin-bottom: 2rem;
+    }
+
+    .portfolio-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .portfolio-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .portfolio-info {
+        padding: 1.5rem;
+    }
+
+    /* Обо мне */
+    .about-section {
+        padding: 5rem 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+
+    .about-image {
+        border-radius: 20px;
+        max-width: 100%;
+    }
+
+    /* Форма */
+    .form-control {
+        border-radius: 10px;
+        border: 1px solid #e2e8f0;
+        padding: 0.75rem;
+    }
+
+    .form-control:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- ГЕРОЙ-СЕКЦИЯ С КРАСИВОЙ КАРТИНКОЙ -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Создаю цифровые продукты, <br>которые работают на вас</h1>
+        <p>Сайты | Анимация | Рекламные ролики | Сценарии</p>
+        <a href="#contactForm" class="btn-primary-custom">Оставить заявку →</a>
+    </div>
+</section>
+
+<!-- ОБО МНЕ -->
+<section id="about" class="about-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3" alt="Обо мне" class="about-image">
+            </div>
+            <div class="col-md-6">
+                <h2>Немного обо мне</h2>
+                <p class="lead">Привет! Я [Ваше Имя] — специалист по созданию сайтов, анимации и рекламных роликов.</p>
+                <p>Более 5 лет помогаю бизнесу и творческим людям воплощать идеи в цифровой формат. Мои работы отличаются вниманием к деталям, современным дизайном и техническим совершенством.</p>
+                <p>💡 <strong>Почему я?</strong> Индивидуальный подход, соблюдение сроков, поддержка после сдачи проекта.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- УСЛУГИ (КРАТКО) -->
+<section id="services" class="services-section">
+    <div class="container">
+        <h2 class="text-center mb-5">Что я предлагаю</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="service-card">
+                    <i class="fas fa-code service-icon"></i>
+                    <h4>Создание сайтов</h4>
+                    <p>Сайты-визитки, landing page, интернет-магазины под ключ. Адаптивный дизайн и админ-панель.</p>
+                    <strong>от 15 000 ₽</strong>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="service-card">
+                    <i class="fas fa-video service-icon"></i>
+                    <h4>Рекламные ролики</h4>
+                    <p>2D/3D анимация, motion-дизайн, реклама для соцсетей и YouTube. Сценарии под ваш запрос.</p>
+                    <strong>от 10 000 ₽</strong>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="service-card">
+                    <i class="fas fa-credit-card service-icon"></i>
+                    <h4>Карточки товаров</h4>
+                    <p>Продающие карточки для Wildberries, Ozon, маркетплейсов. Дизайн + тексты.</p>
+                    <strong>от 1 500 ₽/шт</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ПОРТФОЛИО (ПРИМЕРЫ РАБОТ) -->
+<section id="portfolio" class="portfolio-section">
+    <div class="container">
+        <h2 class="text-center mb-5">Мои работы</h2>
+        <div class="row">
+            {% for project in projects %}
+            <div class="col-md-6 col-lg-4">
+                <div class="portfolio-card">
+                    {% if project.image %}
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                    {% else %}
+                    <img src="https://via.placeholder.com/400x250" alt="placeholder">
+                    {% endif %}
+                    <div class="portfolio-info">
+                        <h5>{{ project.title }}</h5>
+                        <p>{{ project.description|truncatewords:20 }}</p>
+                        {% if project.link %}
+                        <a href="{{ project.link }}" target="_blank" class="btn btn-sm btn-outline-primary">Посмотреть →</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p>Примеры работ скоро появятся...</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ФОРМА ЗАЯВКИ -->
+<section class="services-section" id="contactForm">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h2 class="text-center mb-4">Свяжитесь со мной</h2>
+                <p class="text-center mb-5">Оставьте заявку, и я отвечу в течение 24 часов</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            {{ form.name.label_tag }}
+                            {{ form.name }}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        {{ form.phone.label_tag }}
+                        {{ form.phone }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.message.label_tag }}
+                        {{ form.message }}
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn" style="background: #667eea; color: white; padding: 0.75rem 2rem; border-radius: 50px;">
+                            Отправить заявку →
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
