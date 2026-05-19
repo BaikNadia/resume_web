@@ -6,7 +6,7 @@
 ![](https://img.shields.io/badge/PostgreSQL-10+-blue.svg) ![](https://img.shields.io/badge/Python-3.8+-yellow.svg)
 
 **👩‍💻 Автор:** [BaikNadia](https://github.com/BaikNadia)  
-**📦 Репозиторий:** [Habit Tracker](https://github.com/BaikNadia/resume_web)  
+**📦 Репозиторий:** [resume_web](https://github.com/BaikNadia/resume_web)  
 **📜 Лицензия:** [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/)
 
 ## 📸 Скриншоты
