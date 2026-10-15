@@ -165,7 +165,7 @@
     <div class="hero-content">
         <h1>Создаю цифровые продукты, <br>которые работают на вас</h1>
         <p>Сайты | Анимация | Рекламные ролики | Сценарии</p>
-        <a href="#contactForm" class="btn-primary-custom">Оставить заявку →</a>
+        <a href="#contact" class="btn-primary-custom">Свяжитесь со мной →</a>
     </div>
 </section>
 
@@ -251,40 +251,33 @@
 </section>
 
 <!-- ФОРМА ЗАЯВКИ -->
-<section class="services-section" id="contactForm">
-    <div class="container">
+<section id="contact" class="services-section">
+    <div class="container text-center">
+        <h2 class="mb-4">Свяжитесь со мной удобным способом</h2>
+        <p class="mb-5">Отвечаю в течение 24 часов. Выбирайте, как вам удобнее:</p>
+
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <h2 class="text-center mb-4">Свяжитесь со мной</h2>
-                <p class="text-center mb-5">Оставьте заявку, и я отвечу в течение 24 часов</p>
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            {{ form.name.label_tag }}
-                            {{ form.name }}
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            {{ form.email.label_tag }}
-                            {{ form.email }}
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        {{ form.phone.label_tag }}
-                        {{ form.phone }}
-                    </div>
-                    <div class="mb-3">
-                        {{ form.message.label_tag }}
-                        {{ form.message }}
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn" style="background: #667eea; color: white; padding: 0.75rem 2rem; border-radius: 50px;">
-                            Отправить заявку →
-                        </button>
-                    </div>
-                </form>
+            <div class="col-md-3 mb-3">
+                <a href="tel:+79991234567" class="btn btn-lg w-100" style="background:#667eea; color:white; border-radius:15px; padding:1.5rem;">
+                    <i class="fas fa-phone fa-2x d-block mb-2"></i>
+                    Позвонить
+                </a>
             </div>
-        </div>
+            <div class="col-md-3 mb-3">
+                <a href="mailto:baikowa.nadia@yandex.ru" class="btn btn-lg w-100" style="background:#764ba2; color:white; border-radius:15px; padding:1.5rem;">
+                    <i class="fas fa-envelope fa-2x d-block mb-2"></i>
+                    Написать email
+                </a>
+            </div>
+            <div class="col-md-3 mb-3">
+                <a href="https://t.me/baikovaAI" target="_blank" rel="noopener noreferrer" class="btn btn-lg w-100" style="background:#0088cc; color:white; border-radius:15px; padding:1.5rem;">
+                    <i class="fab fa-telegram fa-2x d-block mb-2"></i>
+                    Telegram
+                </a>
+            </div>
+            </div>
+
+        <p class="mt-4 text-muted">Работаю по всей России и онлайн</p>
     </div>
 </section>
 {% endblock %}
