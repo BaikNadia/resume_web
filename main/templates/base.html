@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Мои услуги{% endblock %} | Ваше Имя</title>
+    <title>{% block title %}Мои услуги{% endblock %} | BaikNadia</title>
 
     <!-- Bootstrap 5 + иконки -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -12,7 +12,6 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Ваши стили -->
     <style>
         * {
             margin: 0;
@@ -24,6 +23,11 @@
             font-family: 'Inter', sans-serif;
             color: #1a1a1a;
             line-height: 1.6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
 
         /* Шапка */
@@ -56,22 +60,177 @@
             color: #667eea !important;
         }
 
+        /* Фильтры портфолио */
+        .filter-btn {
+            background: transparent;
+            border: 2px solid #e2e8f0;
+            color: #4a5568;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            margin: 0 5px 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #667eea;
+            border-color: #667eea;
+            color: white;
+        }
+
+        /* Карточка портфолио */
+        .portfolio-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 2rem;
+            height: 100%;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .portfolio-preview {
+            position: relative;
+            overflow: hidden;
+            height: 240px;
+        }
+
+        .portfolio-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-card:hover .portfolio-preview img {
+            transform: scale(1.08);
+        }
+
+        /* Оверлей при наведении */
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(102, 126, 234, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-card:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .play-btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.05);
+            color: #764ba2;
+        }
+
+        /* Бейдж категории */
+        .category-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: white;
+            color: #667eea;
+            padding: 0.35rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .portfolio-info {
+            padding: 1.5rem;
+        }
+
+        .portfolio-info h5 {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .portfolio-info p {
+            color: #718096;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Модальное окно для видео */
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-modal.active {
+            display: flex;
+        }
+
+        .video-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+        }
+
+        .video-modal-content iframe,
+        .video-modal-content video {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: #667eea;
+        }
+
         /* Футер */
         footer {
             background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
             color: white;
             padding: 3rem 0 1rem;
             margin-top: 4rem;
-        }
-
-        .footer-links a {
-            color: #cbd5e0;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: #667eea;
         }
 
         .social-icons a {
@@ -92,34 +251,30 @@
             margin-top: 76px;
         }
 
-        html {
-        scroll-behavior: smooth;
-        }
-
         /* Адаптивность для мобильных */
         @media (max-width: 768px) {
-        .hero h1 {
-        font-size: 2rem;
-        }
+            .hero h1 {
+                font-size: 2rem;
+            }
 
-        .hero p {
-            font-size: 1rem;
-        }
+            .hero p {
+                font-size: 1rem;
+            }
 
-        .portfolio-card img {
-            height: 200px;
-        }
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 80px;
-        }
-      }
+            .portfolio-card img {
+                height: 200px;
+            }
 
-
+            .video-modal-content iframe,
+            .video-modal-content video {
+                height: 250px;
+            }
+        }
     </style>
 
     {% block extra_css %}{% endblock %}
 </head>
+
 <body>
 
 <!-- ШАПКА (HEADER) С МЕНЮ -->
@@ -156,6 +311,14 @@
     {% block content %}{% endblock %}
 </div>
 
+<!-- МОДАЛЬНОЕ ОКНО ДЛЯ ВИДЕО -->
+<div id="videoModal" class="video-modal">
+    <div class="video-modal-content">
+        <span class="close-modal">&times;</span>
+        <div id="videoContainer"></div>
+    </div>
+</div>
+
 <!-- ФУТЕР (FOOTER) С КОНТАКТАМИ -->
 <footer id="contact">
     <div class="container">
@@ -173,21 +336,21 @@
             <div class="col-md-4 mb-4">
                 <h5>Следите за мной</h5>
                 <div class="social-icons">
-                        <a href="https://vk.com/baiknadia" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-vk"></i>
-                        </a>
-                        <a href="https://t.me/baikovaAI" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-telegram"></i>
-                        </a>
-                        <a href="https://www.instagram.com/ваш_username" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://www.youtube.com/@ваш_username" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="https://github.com/BaikNadia" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-github"></i>
-                        </a>
+                    <a href="https://vk.com/baiknadia" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-vk"></i>
+                    </a>
+                    <a href="https://t.me/baikovaAI" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="https://www.instagram.com/ваш_username" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@ваш_username" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://github.com/BaikNadia" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -199,6 +362,72 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- СКРИПТЫ (в конце body, после всех элементов) -->
+<script>
+    // Преобразование ссылки YouTube в формат для встраивания
+    function toEmbedUrl(url) {
+        if (url.includes('/embed/')) return url;
+
+        const shortMatch = url.match(/youtu\.be\/([^?&]+)/);
+        if (shortMatch) return `https://www.youtube.com/embed/${shortMatch[1]}`;
+
+        const watchMatch = url.match(/[?&]v=([^?&]+)/);
+        if (watchMatch) return `https://www.youtube.com/embed/${watchMatch[1]}`;
+
+        return url;
+    }
+
+    // Фильтрация портфолио
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const filter = this.dataset.filter;
+
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            document.querySelectorAll('.portfolio-item').forEach(item => {
+                if (filter === 'all' || item.dataset.category === filter) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Модальное окно для видео
+    const modal = document.getElementById('videoModal');
+    const videoContainer = document.getElementById('videoContainer');
+
+    document.querySelectorAll('.play-btn[data-video]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            let videoUrl = this.dataset.video;
+
+            if (videoUrl.includes('youtube') || videoUrl.includes('youtu.be') || videoUrl.includes('vimeo')) {
+                videoUrl = toEmbedUrl(videoUrl);
+                videoContainer.innerHTML = `<iframe src="${videoUrl}" allowfullscreen allow="autoplay"></iframe>`;
+            } else {
+                videoContainer.innerHTML = `<video src="${videoUrl}" controls autoplay></video>`;
+            }
+
+            modal.classList.add('active');
+        });
+    });
+
+    document.querySelector('.close-modal').addEventListener('click', () => {
+        modal.classList.remove('active');
+        videoContainer.innerHTML = '';
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            videoContainer.innerHTML = '';
+        }
+    });
+</script>
+
 {% block extra_js %}{% endblock %}
 </body>
 </html>

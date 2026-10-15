@@ -219,25 +219,54 @@
     </div>
 </section>
 
-<!-- ПОРТФОЛИО (ПРИМЕРЫ РАБОТ) -->
+<!-- ПОРТФОЛИО -->
 <section id="portfolio" class="portfolio-section">
     <div class="container">
         <h2 class="text-center mb-5">Мои работы</h2>
-        <div class="row">
+
+        <!-- Фильтры -->
+        <div class="text-center mb-5">
+            <button class="filter-btn active" data-filter="all">Все</button>
+            <button class="filter-btn" data-filter="site">Сайты</button>
+            <button class="filter-btn" data-filter="animation">Анимации</button>
+            <button class="filter-btn" data-filter="video">Ролики</button>
+            <button class="filter-btn" data-filter="card">Карточки</button>
+        </div>
+
+        <div class="row" id="portfolioGrid">
             {% for project in projects %}
-            <div class="col-md-6 col-lg-4">
+            <div class="col-md-6 col-lg-4 portfolio-item" data-category="{{ project.category }}">
                 <div class="portfolio-card">
-                    {% if project.image %}
-                    <img src="{{ project.image.url }}" alt="{{ project.title }}">
-                    {% else %}
-                    <img src="https://via.placeholder.com/400x250" alt="placeholder">
-                    {% endif %}
+
+                    <!-- Превью -->
+                    <div class="portfolio-preview">
+                        {% if project.preview_image %}
+                            <img src="{{ project.preview_image.url }}" alt="{{ project.title }}">
+                        {% else %}
+                            <img src="https://via.placeholder.com/400x250?text=Preview" alt="preview">
+                        {% endif %}
+
+                        <!-- Оверлей с кнопкой -->
+                        <div class="portfolio-overlay">
+                            {% if project.video_url or project.video_file %}
+                                <!-- Открывает модальное окно с видео -->
+                                <button class="play-btn" data-video="{% if project.video_url %}{{ project.video_url }}{% else %}{{ project.video_file.url }}{% endif %}">
+                                    <i class="fas fa-play"></i> Смотреть
+                                </button>
+                            {% elif project.site_url %}
+                                <a href="{{ project.site_url }}" target="_blank" rel="noopener noreferrer" class="play-btn">
+                                    <i class="fas fa-external-link-alt"></i> Открыть сайт
+                                </a>
+                            {% endif %}
+                        </div>
+
+                        <!-- Бейдж категории -->
+                        <span class="category-badge">{{ project.get_category_display }}</span>
+                    </div>
+
                     <div class="portfolio-info">
                         <h5>{{ project.title }}</h5>
-                        <p>{{ project.description|truncatewords:20 }}</p>
-                        {% if project.link %}
-                        <a href="{{ project.link }}" target="_blank" class="btn btn-sm btn-outline-primary">Посмотреть →</a>
-                        {% endif %}
+                        <p>{{ project.description|truncatewords:15 }}</p>
                     </div>
                 </div>
             </div>
@@ -249,6 +278,14 @@
         </div>
     </div>
 </section>
+
+<!-- МОДАЛЬНОЕ ОКНО ДЛЯ ВИДЕО -->
+<div id="videoModal" class="video-modal">
+    <div class="video-modal-content">
+        <span class="close-modal">&times;</span>
+        <div id="videoContainer"></div>
+    </div>
+</div>
 
 <!-- ФОРМА ЗАЯВКИ -->
 <section id="contact" class="services-section">
