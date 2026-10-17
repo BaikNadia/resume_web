@@ -75,7 +75,7 @@ Hetzner (Германия, дёшево)
 
 📄 Лицензия MIT License — свободно используйте, модифицируйте и распространяйте.
 
-📬 Контакты Автор: Надежда Байкова Email: baikowa.nadia@email.com Telegram: @BaikNadia
+📬 Контакты Автор: Надежда Байкова Email: baikowa.nadia@gmail.com Telegram: @BaikNadia
 
 🗺️ Планы по доработке (TODO) Добавить отправку уведомлений в Telegram при новой заявке
 
