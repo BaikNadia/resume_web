@@ -270,7 +270,7 @@ DEBUG = False
 | | |
 |:---:|:---|
 | 👤 **Автор** | Надежда Байкова |
-| 📧 **Email** | [baikowa.nadia@email.com](mailto:baikowa.nadia@gmail.com) |
+| 📧 **Email** | [baikowa.nadia@gmail.com](mailto:baikowa.nadia@gmail.com) |
 | 💬 **Telegram** | [@BaikNadia](https://t.me/BaikNadia) |
 
 </div>
