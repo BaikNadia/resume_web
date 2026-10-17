@@ -34,7 +34,7 @@
 |:---:|:---:|
 | *screenshot-home.png* | *screenshot-portfolio.png* |
 
----
+----
 
 ## ✨ Возможности
 
